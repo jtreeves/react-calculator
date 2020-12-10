@@ -8,6 +8,31 @@ class Calculator extends Component {
         }
     }
 
+    add = () => {
+        const newCount = this.state.count + this.state.inputtedNumber
+        this.setState({ count: newCount })
+    }
+
+    subtract = () => {
+        const newCount = this.state.count - this.state.inputtedNumber
+        this.setState({ count: newCount })
+    }
+
+    multiply = () => {
+        const newCount = this.state.count * this.state.inputtedNumber
+        this.setState({ count: newCount })
+    }
+
+    divide = () => {
+        const newCount = this.state.count / this.state.inputtedNumber
+        this.setState({ count: newCount })
+    }
+
+    changeInput = (event) => {
+        const newValue = parseInt(event.target.value) || 0
+        this.setState({ inputtedNumber: newValue })
+    }
+
     setNum = (e, num) => {
         this.setState({ [num]: e.target.value})
     }
