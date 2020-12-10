@@ -6,37 +6,49 @@ class Calculator extends Component {
         this.state = {
             number1: '',
             number2: '',
-            answer: '',
-            operator: ''
+            operator: '',
+            answer: ''
         }
     }
 
     setNumber = (event, number) => {
+        event.preventDefault()
         this.setState({ [number]: event.target.value })
     }
 
     setOperator = (event) => {
+        event.preventDefault()
         this.setState({ operator: event.target.value })
     }
 
-    calculate = () => {
+    calculate = (event) => {
+        event.preventDefault()
         const number1 = this.state.number1
         const number2 = this.state.number2
-        if (this.state.operator === '+') {
+        const operator = this.state.operator
+        if (operator !== '') {
+            if (operator === '+') {
+                this.setState({
+                    answer: parseInt(number1) + parseInt(number2)
+                })
+            } else if (operator === '-') {
+                this.setState({
+                    answer: parseInt(number1) - parseInt(number2)
+                })
+            } else if (operator === '*') {
+                this.setState({
+                    answer: parseInt(number1) * parseInt(number2)
+                })
+            } else if (operator === '/') {
+                this.setState({
+                    answer: parseInt(number1) / parseInt(number2)
+                })
+            }
             this.setState({
-                answer: parseInt(number1) + parseInt(number2)
-            })
-        } else if (this.state.operator === '-') {
-            this.setState({
-                answer: parseInt(number1) - parseInt(number2)
-            })
-        } else if (this.state.operator === '*') {
-            this.setState({
-                answer: parseInt(number1) * parseInt(number2)
-            })
-        } else if (this.state.operator === '/') {
-            this.setState({
-                answer: parseInt(number1) / parseInt(number2)
+                number1: '',
+                number2: '',
+                operator: '',
+                // answer: ''
             })
         }
     }
