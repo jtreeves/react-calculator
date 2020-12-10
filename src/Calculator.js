@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 
 class Calculator extends Component {
+    constructor() {
+        super()
+        this.state = {
+            count: 0
+        }
+    }
+
     render() {
         return (
             <div className="container">
