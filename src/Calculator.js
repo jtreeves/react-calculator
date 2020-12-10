@@ -1,64 +1,80 @@
 import React, { Component } from 'react'
 
 class Calculator extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            count: 0
+            number1: '',
+            number2: '',
+            answer: '',
+            operator: ''
         }
     }
 
-    add = () => {
-        const newCount = this.state.count + this.state.inputtedNumber
-        this.setState({ count: newCount })
+    setNumber = (event, number) => {
+        this.setState({ [number]: event.target.value })
     }
 
-    subtract = () => {
-        const newCount = this.state.count - this.state.inputtedNumber
-        this.setState({ count: newCount })
+    setOperator = (event) => {
+        this.setState({ operator: event.target.value })
     }
 
-    multiply = () => {
-        const newCount = this.state.count * this.state.inputtedNumber
-        this.setState({ count: newCount })
-    }
-
-    divide = () => {
-        const newCount = this.state.count / this.state.inputtedNumber
-        this.setState({ count: newCount })
-    }
-
-    changeInput = (event) => {
-        const newValue = parseInt(event.target.value) || 0
-        this.setState({ inputtedNumber: newValue })
-    }
-
-    setNum = (e, num) => {
-        this.setState({ [num]: e.target.value})
+    calculate = () => {
+        const number1 = this.state.number1
+        const number2 = this.state.number2
+        if (this.state.operator === '+') {
+            this.setState({
+                answer: parseInt(number1) + parseInt(number2)
+            })
+        } else if (this.state.operator === '-') {
+            this.setState({
+                answer: parseInt(number1) - parseInt(number2)
+            })
+        } else if (this.state.operator === '*') {
+            this.setState({
+                answer: parseInt(number1) * parseInt(number2)
+            })
+        } else if (this.state.operator === '/') {
+            this.setState({
+                answer: parseInt(number1) / parseInt(number2)
+            })
+        }
     }
 
     render() {
         return (
             <div className='container'>
-                <h1>Add with React!</h1>
+                <h1>Calculator</h1>
                 <div className='add'>
                     <input
                         type='number'
-                        name='num1'
+                        name='number1'
                         placeholder='Enter your first number'
-                        value={this.state.num1}
-                        onChange={ (e) => this.setNum(e, 'num1') }
+                        value={this.state.number1}
+                        onChange={ (event) => 
+                            this.setNumber(event, 'number1')
+                        }
                     />
-                    <span>+</span>
+                    <select
+                        name='operator'
+                        onChange={this.setOperator}
+                    >
+                        <option value='+'>+</option>
+                        <option value='-'>-</option>
+                        <option value='*'>*</option>
+                        <option value='/'>/</option>
+                    </select>
                     <input
                         type='number'
-                        name='num2'
+                        name='number2'
                         placeholder='Enter your second number'
-                        value={this.state.num2}
-                        onChange={ (e) => this.setNum(e, 'num2') }
+                        value={this.state.number2}
+                        onChange={ (event) => 
+                            this.setNumber(event, 'number2')
+                        }
                     />
-                    <button>=</button>
-                    <h3>Addition results go here!</h3>
+                    <button onClick={this.calculate}>=</button>
+                    <h3>{this.state.answer}</h3>
                 </div>
             </div>
         )
