@@ -11,14 +11,19 @@ class Calculator extends Component {
         }
     }
 
-    setNumber = (event, number) => {
+    setNumber = (event) => {
         event.preventDefault()
-        this.setState({ [number]: event.target.value })
+        if (this.state.operator === '') {
+            this.setState({ number1: parseInt(event.target.innerText) })
+        } else {
+            this.setState({ number2: parseInt(event.target.innerText) })
+        }
+        this.setState({ answer: parseInt(event.target.innerText) })
     }
 
     setOperator = (event) => {
         event.preventDefault()
-        this.setState({ operator: event.target.value })
+        this.setState({ operator: event.target.innerText })
     }
 
     setAnswer = (event) => {
@@ -26,9 +31,7 @@ class Calculator extends Component {
         const number1 = this.state.number1
         const number2 = this.state.number2
         const operator = this.state.operator
-        const answer = this.state.answer
         if (operator !== '') {
-            // let answer = 0
             if (operator === '+') {
                 this.setState({
                     answer: parseInt(number1) + parseInt(number2)
@@ -50,7 +53,6 @@ class Calculator extends Component {
                 number1: '',
                 number2: '',
                 operator: '',
-                // answer: answer
             })
         }
     }
@@ -60,36 +62,114 @@ class Calculator extends Component {
             <div className='container'>
                 <h1>Calculator</h1>
                 <form>
-                    <input
-                        type='number'
-                        name='number1'
-                        placeholder='Enter your first number'
-                        value={this.state.number1}
-                        onChange={ (event) => 
-                            this.setNumber(event, 'number1')
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
                         }
-                    />
-                    <select
-                        name='operator'
-                        onChange={this.setOperator}
                     >
-                        <option value='+'>+</option>
-                        <option value='-'>-</option>
-                        <option value='*'>*</option>
-                        <option value='/'>/</option>
-                    </select>
-                    <input
-                        type='number'
-                        name='number2'
-                        placeholder='Enter your second number'
-                        value={this.state.number2}
-                        onChange={ (event) => 
-                            this.setNumber(event, 'number2')
+                        1
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
                         }
-                    />
-                    <button onClick={this.setAnswer}>=</button>
-                    <h3>{this.state.answer}</h3>
+                    >
+                        2
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
+                        }
+                    >
+                        3
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
+                        }
+                    >
+                        4
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
+                        }
+                    >
+                        5
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
+                        }
+                    >
+                        6
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
+                        }
+                    >
+                        7
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
+                        }
+                    >
+                        8
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
+                        }
+                    >
+                        9
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setNumber(event)
+                        }
+                    >
+                        0
+                    </button>
+                    
+                    <button
+                        onClick={ (event) =>
+                            this.setOperator(event)
+                        }
+                    >
+                        +
+                    </button>
+                    <button
+                        onClick={ (event) =>
+                            this.setOperator(event)
+                        }
+                    >
+                        -
+                    </button>
+                    <button
+                        onClick={ (event) =>
+                            this.setOperator(event)
+                        }
+                    >
+                        *
+                    </button>
+                    <button
+                        onClick={ (event) =>
+                            this.setOperator(event)
+                        }
+                    >
+                        /
+                    </button>
+                    <button
+                        onClick={ (event) => 
+                            this.setAnswer(event)
+                        }
+                    >
+                        =
+                    </button>
                 </form>
+                <h2>{this.state.answer}</h2>
             </div>
         )
     }
