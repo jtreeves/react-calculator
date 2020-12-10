@@ -59,7 +59,7 @@ class Calculator extends Component {
         return (
             <div className='container'>
                 <h1>Calculator</h1>
-                <div className='add'>
+                <form>
                     <input
                         type='number'
                         name='number1'
@@ -89,7 +89,7 @@ class Calculator extends Component {
                     />
                     <button onClick={this.setAnswer}>=</button>
                     <h3>{this.state.answer}</h3>
-                </div>
+                </form>
             </div>
         )
     }
