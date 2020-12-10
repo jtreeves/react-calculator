@@ -21,7 +21,7 @@ class Calculator extends Component {
         this.setState({ operator: event.target.value })
     }
 
-    calculate = (event) => {
+    setAnswer = (event) => {
         event.preventDefault()
         const number1 = this.state.number1
         const number2 = this.state.number2
@@ -87,7 +87,7 @@ class Calculator extends Component {
                             this.setNumber(event, 'number2')
                         }
                     />
-                    <button onClick={this.calculate}>=</button>
+                    <button onClick={this.setAnswer}>=</button>
                     <h3>{this.state.answer}</h3>
                 </div>
             </div>
