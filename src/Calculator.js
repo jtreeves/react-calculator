@@ -26,7 +26,9 @@ class Calculator extends Component {
         const number1 = this.state.number1
         const number2 = this.state.number2
         const operator = this.state.operator
+        const answer = this.state.answer
         if (operator !== '') {
+            // let answer = 0
             if (operator === '+') {
                 this.setState({
                     answer: parseInt(number1) + parseInt(number2)
@@ -48,7 +50,7 @@ class Calculator extends Component {
                 number1: '',
                 number2: '',
                 operator: '',
-                // answer: ''
+                // answer: answer
             })
         }
     }
